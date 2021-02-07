@@ -2,6 +2,7 @@ package com.example.notesapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
 
 class MainActivity : AppCompatActivity() {
@@ -26,6 +27,9 @@ class MainActivity : AppCompatActivity() {
 
         fragmentTransition.replace(R.id.frame_layout, fragment)
             .addToBackStack(fragment.javaClass.simpleName)
+
+        fragmentTransition.commit()
+
 
 
     }
