@@ -1,36 +1,45 @@
 package com.example.notesapp
 
-import androidx.appcompat.app.AppCompatActivity
+import android.app.Activity
 import android.os.Bundle
-import android.widget.FrameLayout
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        replaceFragment(HomeFragment.newInstance(), true)
+        val fragmentManager = supportFragmentManager
+        replaceFragment(HomeFragment(), true, fragmentManager)
+
+
     }
 
-    private fun replaceFragment(fragment: Fragment, isTransition: Boolean) {
+    companion object {
 
-        val fragmentTransition = supportFragmentManager.beginTransaction()
+        fun replaceFragment(
+            fragment: Fragment,
+            isTransition: Boolean,
+            fragmentManager: FragmentManager
+        ) {
 
-        if (isTransition) {
-            fragmentTransition.setCustomAnimations(
-                android.R.anim.slide_out_right,
-                android.R.anim.slide_in_left
-            )
+            val fragmentTransition = fragmentManager.beginTransaction()
+            if (isTransition) {
+                fragmentTransition.setCustomAnimations(
+                    android.R.anim.slide_out_right,
+                    android.R.anim.slide_in_left
+                )
+            }
+
+            fragmentTransition.replace(R.id.frame_layout, fragment)
+            fragmentTransition.addToBackStack(null)
+
+            fragmentTransition.commit()
 
         }
-
-        fragmentTransition.replace(R.id.frame_layout, fragment)
-            .addToBackStack(fragment.javaClass.simpleName)
-
-        fragmentTransition.commit()
-
-
-
     }
 }

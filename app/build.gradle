@@ -4,6 +4,7 @@ plugins {
 
     //kapt
     id 'kotlin-kapt'
+    id 'kotlin-android-extensions'
 }
 
 android {
@@ -63,16 +64,11 @@ dependencies {
     implementation 'androidx.room:room-runtime:2.2.6'
     kapt 'androidx.room:room-compiler:2.2.6'
     implementation 'androidx.room:room-ktx:2.2.6'
-    implementation 'com.makeramen:roundedimageview:2.3.0'
 
     //crop image library
-
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
-
-    //easy permission
-
-    implementation 'pub.devrel:easypermissions:3.0.0'
 
     //coroutines core
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1'
+
 }

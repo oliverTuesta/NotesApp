@@ -1,12 +1,22 @@
 package com.example.notesapp
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentActivity
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class HomeFragment : Fragment() {
+class HomeFragment : BaseFragment() {
+
+    private lateinit var myContext: FragmentActivity
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        myContext = activity as FragmentActivity
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,4 +40,16 @@ class HomeFragment : Fragment() {
                 }
             }
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val fabBtnCreateNote: FloatingActionButton = view.findViewById(R.id.fabBtnCreateNote)
+
+        fabBtnCreateNote.setOnClickListener {
+            MainActivity.replaceFragment(CreateNoteFragment(), true, myContext.supportFragmentManager)
+        }
+
+    }
+
 }
