@@ -88,7 +88,7 @@ class CreateNoteFragment : BaseFragment() {
             notes.noteText = etNoteDesc.text.toString()
             notes.dateTime = currentDateTime
 
-            context.let {
+            context.let {it: Context? ->
                 try {
                     NotesDatabase.getDatabase(it!!).noteDao().insertNotes(notes)
                 }catch (e: Exception){
