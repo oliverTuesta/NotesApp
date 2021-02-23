@@ -11,7 +11,7 @@ abstract class BaseFragment: Fragment(), CoroutineScope {
 
     private lateinit var job: Job
     override val coroutineContext: CoroutineContext
-        get() = job + Dispatchers.Main
+        get() = job + Dispatchers.Default
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
